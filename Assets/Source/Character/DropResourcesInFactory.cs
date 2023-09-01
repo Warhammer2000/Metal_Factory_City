@@ -1,82 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
 public class DropResourcesInFactory : MonoBehaviour
 {
-    [SerializeField] private Factory currentFactory;
+    [SerializeField] private Factory[] currentFactory;
     private Inventory inventory;
-    [SerializeField]private bool inTrigger = false;
     private void Awake()
     {
         inventory = GetComponent<Inventory>();
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        var factory = other.GetComponentInParent<Factory>();
-        currentFactory = factory;
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            Debug.Log("Anroid");
-            
-            inTrigger = true;   
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.R))
-            {
-                if (factory != null)
-                {
-                    if (factory.isCopperFactory == true && ChekingResourcesType())
-                    {
-                        foreach (var resource in inventory.Resources)
-                        {
-                            factory.Inventory.AddResource(resource);
-                        }
-                        inventory.Clear();
-                    }
-                    if (factory.isDuralFactory)
-                    {
-                        foreach (var resource in inventory.Resources)
-                        {
-                            factory.Inventory.AddResource(resource);
-                        }
-                        inventory.Clear();
-                    }
-                }
-            }
-        }
-    }
     public void DropResources()
     {
-        if (currentFactory == null) Debug.Log("U are not in Factory Trigger"); 
         if (currentFactory != null)
         {
-            if (currentFactory.isCopperFactory == true && ChekingResourcesType())
+            for(int i = 0; i < currentFactory.Length; i++)
             {
-                foreach (var resource in inventory.Resources)
+                if (currentFactory[i].isCopperFactory == true && ChekingResourcesType())
                 {
-                    currentFactory.Inventory.AddResource(resource);
+                    foreach (var resource in inventory.Resources)
+                    {
+                        if (resource.Type == ResourceType.Iron)
+                        {
+                            if (IsIronResource(resource))
+                            {
+                                currentFactory[i].Inventory.AddResource(resource);
+                                Debug.Log("Copper" + resource.name);
+                            }
+                            
+                        }
+                    }
                 }
-                inventory.Clear();
-            }
-            if (currentFactory.isDuralFactory)
-            {
-                foreach (var resource in inventory.Resources)
+                if (currentFactory[i].isDuralFactory)
                 {
-                    currentFactory.Inventory.AddResource(resource);
+                    foreach (var resource in inventory.Resources)
+                    {
+                        if(resource.Type != ResourceType.Dural)
+                        {
+                            if (IsIronResource(resource))
+                            {
+                                currentFactory[i].Inventory.AddResource(resource);
+                                Debug.Log("Dural" + resource.name);
+                            }
+                        }
+                    }     
                 }
-                inventory.Clear();
             }
+            inventory.resources.RemoveAll(IsIronResource);
         }
     }
-    private void OnTriggerExit(Collider other)
+    bool IsIronResource(ResourceData resource)
     {
-        inTrigger = false;
-        currentFactory = null;  
+        return resource.Type == ResourceType.Iron;
     }
     private bool ChekingResourcesType()
     {

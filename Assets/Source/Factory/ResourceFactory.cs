@@ -1,56 +1,64 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Zenject;
 
 public class ResourceFactory : MonoBehaviour
 {
-    [SerializeField] private GameObject resourcePrefab;
-    [SerializeField] private Transform parentObject;
-    public Transform[] spawnPlatform; 
     public float generationInterval = 5f; 
     private int maxResourcesOnPlatform = 10000;
-
+    public List<ResourceData> resources = new List<ResourceData>();
+    [SerializeField] private ResourceData data;
     private float timer = 0f;
-
-    [Inject]
-    private ObjectPool _pool;
-
+    private FactoryInventory inventory;
     public int currentResourcesOnPlatform = 0;
-
     public bool isStarterFactory;
-
     private void Awake()
     {
-        spawnPlatform = parentObject.GetComponentsInChildren<Transform>();
+        inventory = GetComponent<FactoryInventory>();   
     }
+    
+
     private void Update()
     {
         timer += Time.deltaTime;
 
         if (timer >= generationInterval)
         {
-            GenerateResources(0); 
+            GenerateResources(); 
             timer = 0f; 
         }
-    }
-    public void GenerateResources(int amount)
-    {
-        if(isStarterFactory == true)
+        if(resources.Count >= 25)
         {
-            if (currentResourcesOnPlatform >= maxResourcesOnPlatform) return;
+            resources.RemoveAt(10);
         }
-        else
+    }
+    public void GenereteAnotherOne(List<ResourceData> _resources)
+    {
+        if (!isStarterFactory)
         {
-            if (currentResourcesOnPlatform >= amount)
+            int maxResourcesToAdd = Mathf.Min(inventory.resources.Count, _resources.Count);
+            Debug.Log(maxResourcesToAdd);
+            for (int i = 0; i < maxResourcesToAdd; i++)
             {
-                return;
+                resources.Add(data);
+            }
+
+            if (maxResourcesToAdd < resources.Count)
+            {
+                Debug.Log("превышен предел ресурсов в инвентаре завода");
             }
         }
-        if(!isStarterFactory)
-        {
-            int randomindex = Random.Range(0, spawnPlatform.Length);
 
-            Instantiate(resourcePrefab, spawnPlatform[randomindex].position, Quaternion.identity);
+    }
+    public void GenerateResources()
+    {
+        if(isStarterFactory)
+        {
+            if (currentResourcesOnPlatform >= maxResourcesOnPlatform) return;
+            resources.Add(data);
         }
+       
         currentResourcesOnPlatform++;
     }
 }
