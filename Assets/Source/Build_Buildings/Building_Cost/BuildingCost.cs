@@ -13,5 +13,6 @@ public class BuildingCost
 {
     public BuildingType buildingType;
     public ResourceType[] resourceType;
+    public GameObject prefab;
     public int amount;
 }

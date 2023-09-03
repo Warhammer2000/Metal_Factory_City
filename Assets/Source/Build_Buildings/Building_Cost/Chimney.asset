@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42e53fe542db4cd43a20f87bed67e079, type: 3}
-  m_Name: House
+  m_Name: Chimney
   m_EditorClassIdentifier: 
   data:
   - buildingType: 0
-    resourceType: 0000000001000000
-    prefab: {fileID: 5921728866089709740, guid: 3376419b38c4cdd469ff97d7781dc93d, type: 3}
-    amount: 5
+    resourceType: 00000000
+    prefab: {fileID: 100012, guid: e24d2affbec68674bbe3ad6c1d2de53e, type: 3}
+    amount: 3
