@@ -10,6 +10,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Text NeedIron;
     [SerializeField] private Text NeedCoprum;
     [SerializeField] private Text NeedDural;
+    [SerializeField] private Text NeedBrick;
     
   
     private void Awake()
@@ -22,23 +23,30 @@ public class InventoryUI : MonoBehaviour
        NeedIron.text = "Железа : ";
        NeedCoprum.text = "Меди : ";
        NeedDural.text = "Алюминия : ";
+       NeedBrick.text = "Кирпича : ";
     }
 
     private void Update()
     {
-        GetIron();
+        GetResource();
     }
   
-    private void GetIron()
+    private void GetResource()
     {
         int ironCount = 0;
         int CopperCount = 0;
         int DuralCount = 0;
+        int BrickCount = 0;
+
         for (int i = 0; i < inventory.resources.Count; i++)
         {
             if (inventory.resources[i].Type == ResourceType.Iron)
             {
                 ironCount += inventory.resources[i].Amount;
+            }
+            if (inventory.resources[i].Type == ResourceType.Brick)
+            {
+                BrickCount += inventory.resources[i].Amount;
             }
             if (inventory.resources[i].Type == ResourceType.Copper)
             {
@@ -52,9 +60,11 @@ public class InventoryUI : MonoBehaviour
                 DuralCount += inventory.resourceDural[i].Amount;
             }
         }
+
         NeedIron.text = $"Железа : {ironCount} / {ironCount}";
         NeedCoprum.text = $"Меди :{CopperCount} / {CopperCount}";
         NeedDural.text = $"Алюминия :{DuralCount} / {DuralCount}";
+        NeedBrick.text = $"Кирпича :{BrickCount} / {BrickCount}";
       
     }
 }

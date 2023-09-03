@@ -5,7 +5,7 @@ using Zenject;
 
 public class ResourceFactory : MonoBehaviour
 {
-    private float generationInterval = 5f; 
+    private float generationInterval = 1f; 
     private int maxResourcesOnPlatform = 10000;
     public List<ResourceData> resources = new List<ResourceData>();
     [SerializeField] private ResourceData data;

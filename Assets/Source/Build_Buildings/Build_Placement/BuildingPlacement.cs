@@ -2,8 +2,6 @@
 
 public class BuildingPlacement : MonoBehaviour
 {
-   
-
     public GameObject buildingPrefab; 
     public GameObject projectionPrefab; 
 
@@ -11,6 +9,7 @@ public class BuildingPlacement : MonoBehaviour
     private GameObject currentProjection;
 
     private BuildingBrain _brain;
+
     [SerializeField] private GameObject Projection;
     [SerializeField] private bool isBuildButtonPushed = false;
     [SerializeField] private bool isPlacing = false;
@@ -20,7 +19,6 @@ public class BuildingPlacement : MonoBehaviour
    
     private void Start()
     {
-  
         mainCamera = Camera.main;
         _brain = GetComponent<BuildingBrain>();
     }
@@ -84,43 +82,8 @@ public class BuildingPlacement : MonoBehaviour
             }
         }
     }
-    private void ANROID_IOSBUILDING()
-    {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                Ray ray = mainCamera.ScreenPointToRay(touch.position);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    Debug.Log(hit.collider.gameObject.tag);
-                    if (hit.collider.CompareTag("Wall"))
-                    {
-                        Debug.Log("NS XJHN");
-                        return;
-                    }
-                    else
-                    {
-                        if (_brain.CanBuildBuilding(_brain.buildingPrices))
-                        {
-                            Instantiate(buildingPrefab, hit.point, Quaternion.identity);
-                            Debug.LogWarning("Ты построил башню");
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Ты не можешь купить здание");
-                            StopPlacing();
-                            Destroy(Projection.gameObject);
-                        }
-                    }
-                }
-            }
-        }
-    }
+   
+    
     private void ProjectionDisplay()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);

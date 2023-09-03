@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum ResourceType
 {
-    Copper, Iron, Dural, Brick
+    Brick, Iron, Copper, Dural 
 }
 
 
