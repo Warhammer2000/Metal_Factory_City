@@ -2642,7 +2642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e6ef3384335f34f9d056660bd100b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  pushed: 0
 --- !u!114 &158246289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2703,7 +2703,7 @@ MonoBehaviour:
       - m_Target: {fileID: 158246288}
         m_TargetAssemblyTypeName: BuildingPlacement, Assembly-CSharp
         m_MethodName: PCBUILDING
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10051,6 +10051,7 @@ MonoBehaviour:
   matCanBuilded: {fileID: 0}
   matCantBuilded: {fileID: 0}
   matBuilded: {fileID: 0}
+  matNotBuilded: {fileID: 0}
   render: {fileID: 540443501}
   brain: {fileID: 919763640}
 --- !u!1 &540708126
@@ -15374,7 +15375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.033722512, y: 0.022515047}
   m_AnchorMax: {x: 0.98370075, y: 0.38715154}
-  m_AnchoredPosition: {x: -0.7233887, y: 3.757187}
+  m_AnchoredPosition: {x: -0.7233887, y: 3.7571564}
   m_SizeDelta: {x: -11.586899, y: -8.510399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &873738551
@@ -16174,7 +16175,7 @@ MonoBehaviour:
       - m_Target: {fileID: 919763639}
         m_TargetAssemblyTypeName: BuildingPlacement, Assembly-CSharp
         m_MethodName: PCBUILDING
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16233,7 +16234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e6ef3384335f34f9d056660bd100b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  pushed: 0
 --- !u!114 &919763640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16737,7 +16738,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.019005682, y: 0.9730098, z: -0.21295474, w: 0.08683869}
+  m_LocalRotation: {x: 0.019005682, y: 0.9730098, z: -0.21295474, w: 0.08683872}
   m_LocalPosition: {x: -2.5075173, y: 7.65, z: -56.96379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26187,7 +26188,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548651082}
-  m_LocalRotation: {x: 0.019005682, y: 0.9730098, z: -0.21295474, w: 0.08683869}
+  m_LocalRotation: {x: 0.019005682, y: 0.9730098, z: -0.21295474, w: 0.08683872}
   m_LocalPosition: {x: -2.5075173, y: 7.65, z: -56.96379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -27499,6 +27500,7 @@ MonoBehaviour:
   matCanBuilded: {fileID: 0}
   matCantBuilded: {fileID: 0}
   matBuilded: {fileID: 0}
+  matNotBuilded: {fileID: 0}
   render: {fileID: 1662534819}
   brain: {fileID: 919763640}
 --- !u!65 &1662534818
@@ -29317,6 +29319,7 @@ MonoBehaviour:
   matCanBuilded: {fileID: 0}
   matCantBuilded: {fileID: 0}
   matBuilded: {fileID: 0}
+  matNotBuilded: {fileID: 0}
   render: {fileID: 1776182593}
   brain: {fileID: 919763640}
 --- !u!65 &1776182592
@@ -32200,7 +32203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.033722512, y: 0.022515047}
   m_AnchorMax: {x: 0.98370075, y: 0.38715154}
-  m_AnchoredPosition: {x: -0.7233887, y: 3.757187}
+  m_AnchoredPosition: {x: -0.7233887, y: 3.7571564}
   m_SizeDelta: {x: -11.586899, y: -8.510399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1931071115
