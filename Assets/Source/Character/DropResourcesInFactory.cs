@@ -7,7 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(Inventory))]
 public class DropResourcesInFactory : MonoBehaviour
 {
-    [SerializeField] private Factory[] currentFactory;
+    [SerializeField] private Factory cuprumFactory;
+    [SerializeField] private Factory duralFactory;
     private Inventory inventory;
     private void Awake()
     {
@@ -15,11 +16,11 @@ public class DropResourcesInFactory : MonoBehaviour
     }
     public void DropResources()
     {
-        if (currentFactory != null)
+        if (cuprumFactory != null && duralFactory != null)
         {
-            for(int i = 0; i < currentFactory.Length; i++)
-            {
-                if (currentFactory[i].isCopperFactory == true && ChekingResourcesType())
+           
+            
+                if (cuprumFactory.isCopperFactory == true && ChekingResourcesType())
                 {
                     foreach (var resource in inventory.Resources)
                     {
@@ -27,34 +28,39 @@ public class DropResourcesInFactory : MonoBehaviour
                         {
                             if (IsIronResource(resource))
                             {
-                                currentFactory[i].Inventory.AddResource(resource);
+                               cuprumFactory.Inventory.AddResource(resource);
                                 Debug.Log("Copper" + resource.name);
                             }
                             
                         }
                     }
+                   
                 }
-                if (currentFactory[i].isDuralFactory)
+                if (duralFactory.isDuralFactory)
                 {
                     foreach (var resource in inventory.Resources)
                     {
                         if(resource.Type != ResourceType.Dural)
                         {
-                            if (IsIronResource(resource))
+                            if (IsIronResource(resource) || IsCuprumResource(resource))
                             {
-                                currentFactory[i].Inventory.AddResource(resource);
+                                duralFactory.Inventory.AddResource(resource);
                                 Debug.Log("Dural" + resource.name);
                             }
                         }
-                    }     
+                    }
+                    inventory.resources.RemoveAll(IsCuprumResource);
                 }
-            }
-            inventory.resources.RemoveAll(IsIronResource);
         }
+            inventory.resources.RemoveAll(IsIronResource);
     }
-    bool IsIronResource(ResourceData resource)
+    private bool IsIronResource(ResourceData resource)
     {
         return resource.Type == ResourceType.Iron;
+    }
+    private bool IsCuprumResource(ResourceData resource)
+    {
+        return resource.Type == ResourceType.Copper;
     }
     private bool ChekingResourcesType()
     {

@@ -17,40 +17,41 @@ public class FactoryInventory : MonoBehaviour
         resources = new List<ResourceData>(32);
         _resfactory = GetComponent<ResourceFactory>();
     }
-   
+    private void FixedUpdate()
+    {
+        ProduceDural(_factory);
+    }
     public void CheckItems()
     {
         _resfactory.GenereteAnotherOne(resources);
     }
-    private void ProduceDural(Factory factory)
+    public void ProduceDural(Factory factory)
     {
         int ironCount = 0;
         int copperCount = 0;
-
-        foreach (var resource in resources)
-        {
-            if (resource.Type == ResourceType.Iron)
+       
+        
+            Debug.Log("element delayetsya");
+            foreach (var resource in resources)
             {
-                ironCount++;
+                if (resource.Type == ResourceType.Iron)
+                {
+                    ironCount++;
+                }
+                else if (resource.Type == ResourceType.Copper)
+                {
+                    copperCount++;
+                }
             }
-            else if (resource.Type == ResourceType.Copper)
+            if (ironCount >= 10 && copperCount >= 10)
             {
-                copperCount++;
+                Debug.Log("dural is produce");
+                int duralToProduce = Math.Min(ironCount, copperCount); // Выбираем минимальное количество из ironCount и copperCount
+                _resfactory.GenereteAnotherOne(resources);
+                Clear();
             }
-        }
-
-        if (ironCount >= 10 && copperCount >= 10)
-        {
-            // Производство Dural
-            int duralToProduce = Math.Min(ironCount, copperCount); // Выбираем минимальное количество из ironCount и copperCount
-            _resfactory.GenereteAnotherOne(resources);
-            StartCoroutine(WaitProduce());
-        }
-    }
-    private IEnumerator WaitProduce()
-    {
-        yield return new WaitForSeconds(1f);
-        Clear();
+        
+       
     }
     public void AddResource(ResourceData data) => resources.Add(data);      
     public void RemoveResource(ResourceData data) => resources.Remove(data);

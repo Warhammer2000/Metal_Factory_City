@@ -30,5 +30,10 @@ public class PickUpHandler : MonoBehaviour
         }
         CopperFactory.resources.Clear();
 
+        for (int y = 0; y < DuralFactory.resources.Count; y++)
+        {
+            inventory.AddResource(DuralFactory.resources[y]);
+        }
+        DuralFactory.resources.Clear();
     }
 }
