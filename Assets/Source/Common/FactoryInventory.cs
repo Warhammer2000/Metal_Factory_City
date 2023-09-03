@@ -31,7 +31,6 @@ public class FactoryInventory : MonoBehaviour
         int copperCount = 0;
        
         
-            Debug.Log("element delayetsya");
             foreach (var resource in resources)
             {
                 if (resource.Type == ResourceType.Iron)

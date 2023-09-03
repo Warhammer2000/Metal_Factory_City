@@ -39,19 +39,19 @@ public class UpgradeFactory : MonoBehaviour
         {
             Instantiate(Factory—himney, spawnPositionFirst, Quaternion.identity);
             ChimneyIndex++;
-            _factory.generationInterval -= 1;
+         
         }
         else if(ChimneyIndex == 1)
         {
             Instantiate(Factory—himney, spawnPositionSecond, Quaternion.identity);
             ChimneyIndex++;
-            _factory.generationInterval -= 1;
+        
         }
         else if (ChimneyIndex == 2)
         {
             Instantiate(Factory—himney, spawnPositionThird, Quaternion.identity);
             ChimneyIndex++;
-            _factory.generationInterval -= 1;
+
         }
     }
 }

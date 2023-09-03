@@ -10,6 +10,7 @@ public class PickUpHandler : MonoBehaviour
     [SerializeField] private ResourceFactory ironFactory;
     [SerializeField] private ResourceFactory CopperFactory;
     [SerializeField] private ResourceFactory DuralFactory;
+    [SerializeField] private ResourceFactory BrickFactory;
 
     private void Awake()
     {
@@ -17,6 +18,12 @@ public class PickUpHandler : MonoBehaviour
     }
     public void OnPickUpHandler()
     {
+
+        for (int y = 0; y < BrickFactory.resources.Count; y++)
+        {
+            inventory.AddResource(BrickFactory.resources[y]);
+        }
+        BrickFactory.resources.Clear();
 
          for (int y = 0; y < ironFactory.resources.Count; y++)
          {
