@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Build : MonoBehaviour
 {
-    public static Build Instance;
-
     public Material matCanBuilded;
     public Material matCantBuilded;
     public Material matBuilded;
@@ -14,14 +13,15 @@ public class Build : MonoBehaviour
     public Renderer render;
     public BuildingBrain brain;
     private bool isSelected;
-    private bool isBuilded;
+    public bool isBuilded;
+
+    [Inject] private BuildingCountingService countingService;
 
     private void Awake()
     {
-        Instance = this;
+        Debug.Log("Check" + countingService);
         render = GetComponent<Renderer>();  
         GetMaterial();
-         
     }
     private void GetMaterial()
     {
@@ -41,6 +41,7 @@ public class Build : MonoBehaviour
             Vector3 thistransform = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
             Instantiate(BuildingPlacement.selectedTowerToBuy, thistransform, Quaternion.identity);
             render.material = matBuilded;
+            countingService.index++;
             isBuilded = true;
         }
         else render.material = matCantBuilded;

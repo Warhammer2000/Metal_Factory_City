@@ -59,10 +59,6 @@ public class Inventory : MonoBehaviour
 
             resourceCounts[type]++;
         }
-        foreach(KeyValuePair<ResourceType, int> kvp in resourceCounts)
-        {
-            Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
-        }
     }
 }
  
