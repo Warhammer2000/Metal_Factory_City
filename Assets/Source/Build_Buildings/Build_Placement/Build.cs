@@ -5,6 +5,8 @@ using Zenject;
 
 public class Build : MonoBehaviour
 {
+    [Inject] private PowerService powerService;
+
     public Material matCanBuilded;
     public Material matCantBuilded;
     public Material matBuilded;
@@ -41,7 +43,8 @@ public class Build : MonoBehaviour
             Vector3 thistransform = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
             Instantiate(BuildingPlacement.selectedTowerToBuy, thistransform, Quaternion.identity);
             render.material = matBuilded;
-            countingService.index++;
+            powerService.NubmerOfHousePlus();
+            countingService.IncreaseIndex();
             isBuilded = true;
         }
         else render.material = matCantBuilded;

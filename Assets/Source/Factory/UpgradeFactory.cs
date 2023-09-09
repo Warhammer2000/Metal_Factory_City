@@ -3,8 +3,7 @@ using Zenject;
 
 public class UpgradeFactory : MonoBehaviour
 {
-    [Inject]
-    private GameObject Factory—himney;
+  
 
     private int ChimneyIndex = 0;
     private Vector3 spawnPositionFirst;
@@ -19,39 +18,39 @@ public class UpgradeFactory : MonoBehaviour
             ChimneyIndex = 0;
         }
     }
-    private void Awake()
-    {
-        if(Factory—himney != null)
-        {
-            Debug.Log("Injection are successfully done");
-            Positioncalculation();
-        }
-    }
-    private void Positioncalculation()
-    {
-        spawnPositionFirst = transform.position + Vector3.up + Vector3.up * Factory—himney.transform.localScale.y;
-        spawnPositionSecond = transform.position + Vector3.up + Vector3.right * Factory—himney.transform.localScale.y;
-        spawnPositionThird = transform.position + Vector3.up + Vector3.left * Factory—himney.transform.localScale.y;
-    }
-    public void UpgradeButton()
-    {
-        if(ChimneyIndex == 0)
-        {
-            Instantiate(Factory—himney, spawnPositionFirst, Quaternion.identity);
-            ChimneyIndex++;
+    //private void Awake()
+    //{
+    //    if(Factory—himney != null)
+    //    {
+    //        Debug.Log("Injection are successfully done");
+    //        Positioncalculation();
+    //    }
+    //}
+    //private void Positioncalculation()
+    //{
+    //    spawnPositionFirst = transform.position + Vector3.up + Vector3.up * Factory—himney.transform.localScale.y;
+    //    spawnPositionSecond = transform.position + Vector3.up + Vector3.right * Factory—himney.transform.localScale.y;
+    //    spawnPositionThird = transform.position + Vector3.up + Vector3.left * Factory—himney.transform.localScale.y;
+    //}
+    //public void UpgradeButton()
+    //{
+    //    if(ChimneyIndex == 0)
+    //    {
+    //        Instantiate(Factory—himney, spawnPositionFirst, Quaternion.identity);
+    //        ChimneyIndex++;
          
-        }
-        else if(ChimneyIndex == 1)
-        {
-            Instantiate(Factory—himney, spawnPositionSecond, Quaternion.identity);
-            ChimneyIndex++;
+    //    }
+    //    else if(ChimneyIndex == 1)
+    //    {
+    //        Instantiate(Factory—himney, spawnPositionSecond, Quaternion.identity);
+    //        ChimneyIndex++;
         
-        }
-        else if (ChimneyIndex == 2)
-        {
-            Instantiate(Factory—himney, spawnPositionThird, Quaternion.identity);
-            ChimneyIndex++;
+    //    }
+    //    else if (ChimneyIndex == 2)
+    //    {
+    //        Instantiate(Factory—himney, spawnPositionThird, Quaternion.identity);
+    //        ChimneyIndex++;
 
-        }
-    }
+    //    }
+    //}
 }

@@ -9,6 +9,10 @@ using Zenject;
 
 public class BuildTime : MonoBehaviour
 {
+
+    [Inject] private PowerService powerService;
+
+
     [SerializeField] private BuildingCountingService buildingService;
     [SerializeField] private GameObject Button;
     [SerializeField] private GameObject Canvas;
@@ -60,7 +64,8 @@ public class BuildTime : MonoBehaviour
     public void DestroyBuilding()
     {
         build.isBuilded = false;
-        buildingService.index--;
+        powerService.NubmerOfHouseMinus();
+        buildingService.DecreaseIndex();
         Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)

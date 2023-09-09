@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class BuildingCountingService : MonoBehaviour
 {
-    [field : SerializeField] public  int index { get; set; }
+    [field : SerializeField] public  int index { get; private set; }
+
+    public int IncreaseIndex()
+    {
+        return index++;
+    }
+    public int DecreaseIndex()
+    {
+        return index--;
+    }
 
     private void FixedUpdate()
     {

@@ -10,10 +10,8 @@ namespace Project.Installer
         [SerializeField] private BuildingCountingService buildingService;
         [SerializeField] private MovementSettings _movementSettings;
         [SerializeField] private Inventory _inventory;
-        [SerializeField] private GameObject _factory—himney;
         [SerializeField] private ResourceCount _count;
-        [SerializeField] private ObjectPool _pool;
-        [SerializeField] private Joystick _joystick;
+        [SerializeField] private PowerService _powerService;
 
         public override void InstallBindings()
         {
@@ -21,9 +19,7 @@ namespace Project.Installer
             Container.Bind<ResourceCount>().FromInstance(_count).AsSingle();
             Container.Bind<MovementSettings>().FromInstance(_movementSettings).AsSingle();
             Container.Bind<Inventory>().FromInstance(_inventory).AsSingle();
-            Container.Bind<GameObject>().FromInstance(_factory—himney).AsSingle();
-            Container.Bind<ObjectPool>().FromInstance(_pool).AsSingle();
-           Container.Bind<Joystick>().FromInstance(_joystick).AsSingle();
+            Container.Bind<PowerService>().FromInstance(_powerService).AsSingle();
         }
     }
 }
