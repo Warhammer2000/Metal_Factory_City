@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74511cb71d2b77d49bd990f39514c6d2, type: 3}
   m_Name: Dural
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 3
   Amount: 1

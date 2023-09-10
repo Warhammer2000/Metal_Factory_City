@@ -9,6 +9,7 @@ public class ResourceCount : MonoBehaviour
     [field : SerializeField] public int IronCount { get; private set; } = 0;
     [field: SerializeField] public int CopperCount { get; private set; } = 0;
     [field: SerializeField] public int DuralCount { get; private set; } = 0;
+    [field: SerializeField] public int BrickCount { get; private set; } = 0;
     private void Awake()
     {
         inventory = GetComponent<Inventory>();
@@ -23,7 +24,7 @@ public class ResourceCount : MonoBehaviour
         int ironCount = 0;
         int copperCount = 0;
         int duralCount = 0;
-
+        int brickCount = 0;
        
         for (int i = 0; i < inventory.resources.Count; i++)
         {
@@ -34,6 +35,10 @@ public class ResourceCount : MonoBehaviour
             if (inventory.resources[i].Type == ResourceType.Copper)
             {
                 copperCount += inventory.resources[i].Amount;
+            }
+            if (inventory.resources[i].Type == ResourceType.Brick)
+            {
+                brickCount += inventory.resources[i].Amount;
             }
         }
         for (int i = 0; i < inventory.resourceDural.Count; i++)
@@ -46,5 +51,6 @@ public class ResourceCount : MonoBehaviour
         IronCount = ironCount;
         CopperCount = copperCount;
         DuralCount = duralCount;    
+        BrickCount = brickCount;
     }
 }

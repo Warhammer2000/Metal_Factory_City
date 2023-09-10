@@ -6,8 +6,8 @@ using UnityEngine;
 public class FactoryInventory : MonoBehaviour
 {
     public List<ResourceData> resources;
-    private ResourceFactory _resfactory;
-    private Factory _factory; 
+    [SerializeField] private ResourceFactory _resfactory;
+    [SerializeField] private Factory _factory; 
     private IReadOnlyList<ResourceData> Resources => resources.AsReadOnly();
 
     
@@ -45,7 +45,7 @@ public class FactoryInventory : MonoBehaviour
             if (ironCount >= 10 && copperCount >= 10)
             {
                 Debug.Log("dural is produce");
-                int duralToProduce = Math.Min(ironCount, copperCount); // ¬ыбираем минимальное количество из ironCount и copperCount
+                int duralToProduce = Math.Min(ironCount, copperCount); 
                 _resfactory.GenereteAnotherOne(resources);
                 Clear();
             }

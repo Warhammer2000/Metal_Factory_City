@@ -22,6 +22,7 @@ public class Build : MonoBehaviour
     private void Awake()
     {
         Debug.Log("Check" + countingService);
+
         render = GetComponent<Renderer>();  
         GetMaterial();
     }
